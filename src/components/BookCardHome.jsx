@@ -3,24 +3,37 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import books from "../data/fantasy.json";
 
 function BookCardHome() {
   return (
-    <Container style={{ marginTop: 60 }}>
+    <Container style={{ marginTop: 60, marginBottom: 90 }}>
       <h2 className="text-center mb-5">Category: Romanzi Fantasy</h2>
       <Row>
-        <Col xs={6} md={4} lg={3} xl={2}>
-          <Card style={{ width: "18rem" }} className="flex-row">
-            <Card.Img variant="top" src="holder.js/100px180" />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-        </Col>
+        {books.map(book => {
+          return (
+            <Col xs={12} lg={6} xl={4} key={book.asin} className="p-2">
+              <Card className="flex-row">
+                <div style={{ width: "11rem", height: "15rem" }}>
+                  <Card.Img
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    variant="top"
+                    src={book.img}
+                  />
+                </div>
+                <Card.Body className="col-8 d-flex flex-column">
+                  <Card.Title className="mb-auto">{book.title}</Card.Title>
+                  <div>
+                    <Card.Text>
+                      {book.category} | {book.price}€
+                    </Card.Text>
+                    <Button variant="danger">Compra</Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          );
+        })}
       </Row>
     </Container>
   );
