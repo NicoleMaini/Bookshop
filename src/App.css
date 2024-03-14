@@ -2,7 +2,7 @@
   cursor: pointer;
 }
 .bookCard:hover {
-  scale: 1.06;
+  scale: 1.04;
   transition: 0.3s;
   z-index: 111;
 }

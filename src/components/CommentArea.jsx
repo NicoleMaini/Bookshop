@@ -44,7 +44,7 @@ class CommentArea extends Component {
       <Row>
         <Col xs={6} md={12}>
           {this.state.comments.map(comment => {
-            return <CommentList comment={comment} key={comment._id} />;
+            return <CommentList comment={comment} key={comment._id} id={comment._id} />;
           })}
         </Col>
         <Col xs={6} md={12}>
