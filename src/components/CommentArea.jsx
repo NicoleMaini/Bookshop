@@ -42,13 +42,13 @@ class CommentArea extends Component {
   render() {
     return (
       <Row>
-        <Col xs={12} md={6}>
+        <Col xs={6} md={12}>
           {this.state.comments.map(comment => {
             return <CommentList comment={comment} key={comment._id} />;
           })}
         </Col>
-        <Col xs={12} md={6}>
-          <CommentAdd />
+        <Col xs={6} md={12}>
+          <CommentAdd asin={this.props.asin} />
         </Col>
       </Row>
     );
