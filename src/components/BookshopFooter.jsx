@@ -6,7 +6,7 @@ import { FaHeadset } from "react-icons/fa";
 
 function BookFooter() {
   return (
-    <div className="bg-body-tertiary fixed-bottom">
+    <div className="bg-body-tertiary">
       <Container fluid className="d-flex justify-content-center py-4 fs-5">
         <Anchor href="#" className="text-decoration-none text-dark me-4">
           <MdOutlinePayment /> Carta
