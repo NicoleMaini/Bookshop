@@ -1,17 +1,24 @@
 import { Component } from "react";
+import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import BookCardHome from "./BookCardHome";
-import Nav from "react-bootstrap/Nav";
 import booksFantasy from "../data/fantasy.json";
 import booksHistory from "../data/history.json";
 import booksHorror from "../data/horror.json";
 import booksRomance from "../data/romance.json";
 import booksScifi from "../data/scifi.json";
+import CommentArea from "./CommentArea";
 
 class BookListHome extends Component {
   state = {
     singleBook: booksFantasy,
+    asin: "",
+  };
+
+  changeBookCardState = value => {
+    this.setState({ asin: value });
   };
 
   render() {
@@ -46,10 +53,26 @@ class BookListHome extends Component {
         </Nav>
         <h2 className="text-center mb-5">Category: Romanzi Fantasy</h2>
         <Row>
-          {/* {console.log(this.state.singleBook)} */}
-          {this.state.singleBook.map(book => {
-            return <BookCardHome book={book} key={book.asin} />;
-          })}
+          <Col md={8}>
+            <Row>
+              {/* {console.log(this.state.singleBook)} */}
+              {this.state.singleBook.map(book => {
+                return (
+                  <BookCardHome
+                    book={book}
+                    key={book.asin}
+                    asin={this.state.asin}
+                    // selected={this.state.selected}
+                    changeBookCardState={this.changeBookCardState}
+                    // onClick={this.setState({ selected: !this.state.selected })}
+                  />
+                );
+              })}
+            </Row>
+          </Col>
+          <Col md={4}>
+            <CommentArea selected={this.state.selected} />
+          </Col>
         </Row>
       </Container>
     );

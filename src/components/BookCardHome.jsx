@@ -2,7 +2,6 @@ import { Component } from "react";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import CommentArea from "./CommentArea";
 
 class BookCardHome extends Component {
   state = {
@@ -11,7 +10,7 @@ class BookCardHome extends Component {
   render() {
     return (
       // qui abbiamo utilizzato la props che entra con il nome apposito assegnatogli nel file BookListHome, per avere il riferimento dell'elemento da usare
-      <Col xs={12} lg={6} xl={4} className="p-2 bookCard">
+      <Col xs={12} lg={6} className="p-2 bookCard">
         <Card className="flex-row" style={{ border: this.state.selected ? "1px solid red" : "1px solid gray" }}>
           <div style={{ width: "11rem", height: "14rem", overflow: "hidden" }}>
             <Card.Img
@@ -37,7 +36,7 @@ class BookCardHome extends Component {
             </div>
           </Card.Body>
         </Card>
-        {this.state.selected === true && <CommentArea asin={this.props.book.asin} />}
+        {/* {this.state.selected === true && <CommentArea asin={this.props.book.asin} />} */}
       </Col>
     );
   }

@@ -12,10 +12,10 @@ class CommentArea extends Component {
   // creao la fetch e la chiamo all'interno di ComponentDidMount
 
   fetchCommentsBook = () => {
-    fetch("https://striveschool-api.herokuapp.com/api/comments/" + this.props.asin, {
+    fetch("https://striveschool-api.herokuapp.com/api/" + this.props.asin, {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxYjFiZDRjNTllYzAwMTk5MGQ3OWUiLCJpYXQiOjE3MDkyODk5MTgsImV4cCI6MTcxMDQ5OTUxOH0.Xetjs2pF9la9RUExay-929FxXJMdp812qWLuaQgmWwY",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NWRhOWFiYWQyODAwMTliZDUyZTEiLCJpYXQiOjE3MTA3NzU3MjIsImV4cCI6MTcxMTk4NTMyMn0.jx4VoW-lw4C_9Ipk-C6pWWjmhEX9pWzgP1_BCsXeiqM",
       },
     })
       .then(response => {
@@ -37,6 +37,12 @@ class CommentArea extends Component {
 
   componentDidMount() {
     this.fetchCommentsBook();
+  }
+
+  shouldComponentUpdate(prevProps, prevState) {
+    if (prevProps.asin !== this.props.asin) {
+      this.fetchCommentsBook();
+    }
   }
 
   render() {

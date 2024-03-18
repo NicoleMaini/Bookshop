@@ -5,7 +5,6 @@ import BookNavbar from "./components/BookshopNavbar";
 import BookFooter from "./components/BookshopFooter";
 import BookListHome from "./components/BookListHome";
 import BookWelcome from "./components/BookWelcome";
-import books from "./data/fantasy.json";
 
 function App() {
   return (
