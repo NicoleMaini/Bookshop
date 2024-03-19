@@ -61,10 +61,10 @@ class BookListHome extends Component {
                   <BookCardHome
                     book={book}
                     key={book.asin}
-                    // asin={this.state.asin}
                     // selected={this.state.selected}
                     changeAsin={this.changeAsin} // cambierà lo stato di bookCardHome attraverso this.props
                     // onClick={this.setState({ selected: !this.state.selected })}
+                    asin={this.state.asin} // informiamo il componenete libro di quale libro sia seleziato
                   />
                 );
               })}
