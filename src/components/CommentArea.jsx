@@ -12,7 +12,8 @@ class CommentArea extends Component {
   // creao la fetch e la chiamo all'interno di ComponentDidMount
 
   fetchCommentsBook = () => {
-    fetch("https://striveschool-api.herokuapp.com/api/" + this.props.asin, {
+    console.log(this.props.asin);
+    fetch("https://striveschool-api.herokuapp.com/api/comments/" + this.props.asin, {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NWRhOWFiYWQyODAwMTliZDUyZTEiLCJpYXQiOjE3MTA3NzU3MjIsImV4cCI6MTcxMTk4NTMyMn0.jx4VoW-lw4C_9Ipk-C6pWWjmhEX9pWzgP1_BCsXeiqM",
@@ -39,7 +40,7 @@ class CommentArea extends Component {
     this.fetchCommentsBook();
   }
 
-  shouldComponentUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.asin !== this.props.asin) {
       this.fetchCommentsBook();
     }

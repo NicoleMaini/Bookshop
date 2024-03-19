@@ -8,7 +8,7 @@ class CommentList extends Component {
       method: "DELETE",
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxYjFiZDRjNTllYzAwMTk5MGQ3OWUiLCJpYXQiOjE3MDkyODk5MTgsImV4cCI6MTcxMDQ5OTUxOH0.Xetjs2pF9la9RUExay-929FxXJMdp812qWLuaQgmWwY",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NWRhOWFiYWQyODAwMTliZDUyZTEiLCJpYXQiOjE3MTA3NzU3MjIsImV4cCI6MTcxMTk4NTMyMn0.jx4VoW-lw4C_9Ipk-C6pWWjmhEX9pWzgP1_BCsXeiqM",
         "Content-Type": "application/json",
       },
     })
@@ -30,7 +30,7 @@ class CommentList extends Component {
           <div className="border-top border-bottom p-1">{this.props.comment.comment}</div>
           <div className="small m-1">Voto: {this.props.comment.rate}</div>
           <Button
-            className="m-3 mt-0 d-flex text-center w-25 mx-auto"
+            className="m-3 mt-0 d-flex justify-content-center w-50 mx-auto"
             variant="warning"
             type="button"
             onClick={this.removeComment}

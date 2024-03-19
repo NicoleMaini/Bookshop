@@ -21,7 +21,11 @@ class BookCardHome extends Component {
                 borderTopRightRadius: 0,
                 borderBottomLeftRadius: 5,
               }}
-              onClick={() => this.setState({ selected: !this.state.selected })}
+              onClick={() => {
+                this.setState({ selected: !this.state.selected });
+                this.props.changeAsin(this.props.book.asin); // cambiamo la proprietà asin nello stato di book card
+                // gli abbiamo detto di prendere la funzione che setta lo stato dal componente padre e settarla sull'asin attuale
+              }}
               variant="top"
               src={this.props.book.img}
             />

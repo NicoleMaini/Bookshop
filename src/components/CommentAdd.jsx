@@ -7,17 +7,30 @@ import Form from "react-bootstrap/Form";
 class CommentAdd extends Component {
   // creao uno state, e una costante per ricevere i valori dal form e creare la fetch
   state = {
-    review: { comment: "", rate: 1, elementId: this.props.asin },
+    review: { comment: "", rate: 1, elementId: this.props.asin }, // elementId nello stato non viene più riaggiornato in quanto lo state stesso
+    // viene "sovrascritto" da this.props.asin
   };
+
+  // creo un ambiente protetto per richiamare la fetch ogni volta che lo stato o le propr vengono cambiate
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.asin !== this.props.asin) {
+      this.setState({
+        review: {
+          ...this.state.comment, // spreddo il vecchio state e ci aggiungo l'elemento nuovo che si andrà a ricreare di volta in volta
+          elementId: this.props.asin,
+        },
+      });
+    }
+  }
 
   formFetch = e => {
     e.preventDefault();
     fetch("https://striveschool-api.herokuapp.com/api/comments/", {
       method: "POST",
-      body: JSON.stringify(this.state.review), // qui sto inviando i miei value del form sottoforma di stringa al server
+      body: JSON.stringify(this.state.review), // qui sto inviando i miei value aggiornati allo stato attuale del form sottoforma di stringa al server
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxYjFiZDRjNTllYzAwMTk5MGQ3OWUiLCJpYXQiOjE3MDkyODk5MTgsImV4cCI6MTcxMDQ5OTUxOH0.Xetjs2pF9la9RUExay-929FxXJMdp812qWLuaQgmWwY",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NWRhOWFiYWQyODAwMTliZDUyZTEiLCJpYXQiOjE3MTA3NzU3MjIsImV4cCI6MTcxMTk4NTMyMn0.jx4VoW-lw4C_9Ipk-C6pWWjmhEX9pWzgP1_BCsXeiqM",
         "Content-Type": "application/json",
       },
     })

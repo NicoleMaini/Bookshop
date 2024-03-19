@@ -16,9 +16,9 @@ class BookListHome extends Component {
     singleBook: booksFantasy,
     asin: "",
   };
-
-  changeBookCardState = value => {
-    this.setState({ asin: value });
+  // funzione che cambia lo state, grazie al parametro
+  changeAsin = newAsin => {
+    this.setState({ asin: newAsin });
   };
 
   render() {
@@ -61,18 +61,16 @@ class BookListHome extends Component {
                   <BookCardHome
                     book={book}
                     key={book.asin}
-                    asin={this.state.asin}
+                    // asin={this.state.asin}
                     // selected={this.state.selected}
-                    changeBookCardState={this.changeBookCardState}
+                    changeAsin={this.changeAsin} // cambierà lo stato di bookCardHome attraverso this.props
                     // onClick={this.setState({ selected: !this.state.selected })}
                   />
                 );
               })}
             </Row>
           </Col>
-          <Col md={4}>
-            <CommentArea selected={this.state.selected} />
-          </Col>
+          <Col md={4}>{this.state.asin !== "" && <CommentArea asin={this.state.asin} />}</Col>
         </Row>
       </Container>
     );
