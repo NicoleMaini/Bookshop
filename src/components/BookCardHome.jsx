@@ -9,7 +9,7 @@ const BookCardHome = function (props) {
 
   return (
     // qui abbiamo utilizzato la props che entra con il nome apposito assegnatogli nel file BookListHome, per avere il riferimento dell'elemento da usare
-    <Col xs={12} lg={6} className="p-2 bookCard">
+    <Col className={props.asin ? "col-lg-6 p-2 bookCard" : "col-md-6 col-lg-4 p-2 bookCard"}>
       {/* invece di comparare il valore boleano selected, ora compariamo l'asin del libro selezionato con l'asin del componente */}
       <Card
         className="flex-row"
@@ -26,8 +26,7 @@ const BookCardHome = function (props) {
             }}
             onClick={() => {
               // this.setState({ selected: !this.state.selected });
-              props.asin ? props.setAsin("") : props.setAsin(props.book.asin);
-
+              props.asin === props.book.asin ? props.setAsin("") : props.setAsin(props.book.asin);
               // cambiamo la proprietà asin nello stato di book card
               // gli abbiamo detto di prendere la funzione che setta lo stato dal componente padre e settarla sull'asin attuale
             }}

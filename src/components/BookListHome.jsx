@@ -3,6 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import BookCardHome from "./BookCardHome";
 import booksFantasy from "../data/fantasy.json";
 import booksHistory from "../data/history.json";
@@ -15,6 +16,7 @@ const BookListHome = function () {
   // converto in Hook lo state
   const [singleBook, setSingleBook] = useState(booksFantasy);
   const [asin, setAsin] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // sta roba non ti serve più
   // state = {
@@ -80,20 +82,35 @@ const BookListHome = function () {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <h2 className="text-center mb-5">Category: Romanzi Fantasy</h2>
       <Row>
-        <Col className={asin !== "" ? "md-12" : "md-8"}>
+        <Form.Group>
+          <Form.Control
+            className="mb-4 w-50 mx-auto"
+            type="search"
+            placeholder="Cerca un libro"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
+        </Form.Group>
+      </Row>
+      <h2 className="text-center mb-5">Category: Romanzi {singleBook[0].category}</h2>
+      <Row>
+        <Col className={asin !== "" ? "col-md-8" : "col-md-12"}>
           <Row>
-            {singleBook.map(book => {
-              return (
-                <BookCardHome
-                  book={book}
-                  key={book.asin}
-                  setAsin={setAsin}
-                  asin={asin} // informiamo il componenete libro di quale libro sia seleziato
-                />
-              );
-            })}
+            {singleBook
+              .filter(book => {
+                return book.title.toLowerCase().includes(searchQuery);
+              })
+              .map(book => {
+                return (
+                  <BookCardHome
+                    book={book}
+                    key={book.asin}
+                    setAsin={setAsin}
+                    asin={asin} // informiamo il componenete libro di quale libro sia seleziato
+                  />
+                );
+              })}
           </Row>
         </Col>
         {/* questa comparazione mi serve per dire: se è selezionato un libro allora fammi vedere i commenti affianco, altrimenti no */}

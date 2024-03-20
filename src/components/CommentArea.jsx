@@ -39,6 +39,7 @@ const CommentArea = function (props) {
 
   useEffect(() => {
     fetchCommentsBook();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.asin]);
 

@@ -42,7 +42,7 @@ const CommentAdd = function (props) {
   // creo un ambiente protetto per richiamare la fetch ogni volta che lo stato o le propr vengono cambiate
   useEffect(() => {
     setElementId(props.asin);
-  });
+  }, [props.asin]);
 
   // componentDidUpdate(prevProps, prevState) {
   //   if (prevProps.asin !== this.props.asin) {
