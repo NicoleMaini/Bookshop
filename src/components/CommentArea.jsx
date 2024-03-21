@@ -50,7 +50,7 @@ const CommentArea = function (props) {
   // }
 
   return (
-    <Row>
+    <Row data-testid="comment-area-id">
       <Col xs={6} md={12}>
         {comments.map(comment => {
           return <CommentList comment={comment} key={comment._id} id={comment._id} fetch={fetchCommentsBook} />;

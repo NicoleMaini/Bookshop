@@ -9,14 +9,17 @@ const BookCardHome = function (props) {
 
   return (
     // qui abbiamo utilizzato la props che entra con il nome apposito assegnatogli nel file BookListHome, per avere il riferimento dell'elemento da usare
-    <Col className={props.asin ? "col-lg-6 p-2 bookCard" : "col-md-6 col-lg-4 p-2 bookCard"}>
+
+    <Col data-testid="book-id" className={props.asin ? "col-lg-6 p-2 bookCard" : "col-md-6 col-lg-4 p-2 bookCard"}>
       {/* invece di comparare il valore boleano selected, ora compariamo l'asin del libro selezionato con l'asin del componente */}
       <Card
+        data-testid="book-card-id"
         className="flex-row"
         style={{ border: props.book.asin === props.asin ? "1px solid red" : "1px solid gray" }}
       >
         <div style={{ width: "11rem", height: "14rem", overflow: "hidden" }}>
           <Card.Img
+            data-testid="img-id"
             style={{
               width: "100%",
               height: "100%",
